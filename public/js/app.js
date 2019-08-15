@@ -5367,7 +5367,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getDados: function getDados() {
       var app = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/lv_desafio2/public/api/curso').then(function (resp) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/desafio2/api/curso').then(function (resp) {
         //console.log(resp.data.professores);
         //console.log(resp.data.cursos);
         app.professores = resp.data.professores;
@@ -5378,8 +5378,8 @@ __webpack_require__.r(__webpack_exports__);
       event.preventDefault();
       var app = this;
       var novoProfessor = app.professor;
-      var url = '/lv_desafio2/public/api/curso';
-      if (this.id) url = "/lv_desafio2/public/api/curso/".concat(this.id);
+      var url = '/desafio2/api/curso';
+      if (this.id) url = "/desafio2/api/curso/".concat(this.id);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, {
         nome: app.curso.nome,
         id_professor: app.curso.id_professor
@@ -5397,7 +5397,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteCurso: function deleteCurso(id, index) {
       var app = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/lv_desafio2/public/api/curso/' + id).then(function (resp) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/desafio2/api/curso/' + id).then(function (resp) {
         app.cursos.splice(index, 1);
         app.toastSuccess("".concat(resp.data.retorno));
       })["catch"](function (resp) {
@@ -5412,7 +5412,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.id = id;
         var app = this;
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/lv_desafio2/public/api/curso/".concat(id)).then(function (resp) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/desafio2/api/curso/".concat(id)).then(function (resp) {
           //console.log(resp.data);
           app.professores = resp.data.professores;
           app.curso.nome = resp.data.curso.nome;
@@ -5507,8 +5507,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -5590,7 +5588,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//import axios from 'axios';
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5609,17 +5607,29 @@ __webpack_require__.r(__webpack_exports__);
     getProfessores: function getProfessores() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/lv_desafio2/public/api/professor').then(function (response) {
+      /*
+      axios.get('/desafio2/api/professor')
+          .then(response => {
+              
+              this.professores = response.data;
+          })
+          .catch(function (resp) {
+              console.log(resp.data);
+      });
+      */
+      this.$http.get('/api/professor').then(function (response) {
         _this.professores = response.data;
+      })["catch"](function (resp) {
+        console.log(resp.data);
       });
     },
     formProfessor: function formProfessor() {
       event.preventDefault();
       var app = this;
       var novoProfessor = app.professor;
-      var url = '/lv_desafio2/public/api/professor';
-      if (this.id) url = "/lv_desafio2/public/api/professor/".concat(this.id);
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(url, {
+      var url = '/api/professor';
+      if (this.id) url = "/api/professor/".concat(this.id);
+      this.$http.post(url, {
         nome: app.professor.nome,
         data_nascimento: app.professor.data_nascimento
       }).then(function (resp) {
@@ -5636,7 +5646,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     deleteProfessor: function deleteProfessor(id, index) {
       var app = this;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('/lv_desafio2/public/api/professor/' + id).then(function (resp) {
+      this.$http["delete"]('/api/professor/' + id).then(function (resp) {
         app.professores.splice(index, 1);
         app.toastSuccess("".concat(resp.data.retorno));
       })["catch"](function (resp) {
@@ -5651,7 +5661,7 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.id = id;
         var app = this;
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/lv_desafio2/public/api/professor/".concat(id)).then(function (resp) {
+        axios.get("/api/professor/".concat(id)).then(function (resp) {
           //console.log(resp.data);
           app.professor.nome = resp.data.nome;
           app.professor.data_nascimento = resp.data.data_nascimento;
@@ -28897,7 +28907,7 @@ var VBTooltip = {
 /*!*************************************************!*\
   !*** ./node_modules/bootstrap-vue/esm/index.js ***!
   \*************************************************/
-/*! exports provided: BVConfigPlugin, BVConfig, BootstrapVue, install, setConfig, default, componentsPlugin, BVModalPlugin, BVToastPlugin, AlertPlugin, BAlert, BadgePlugin, BBadge, BreadcrumbPlugin, BBreadcrumb, BBreadcrumbItem, ButtonPlugin, BButton, BButtonClose, ButtonGroupPlugin, BButtonGroup, ButtonToolbarPlugin, BButtonToolbar, CardPlugin, BCard, BCardBody, BCardFooter, BCardGroup, BCardHeader, BCardImg, BCardImgLazy, BCardSubTitle, BCardText, BCardTitle, CarouselPlugin, BCarousel, BCarouselSlide, CollapsePlugin, BCollapse, DropdownPlugin, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownDivider, BDropdownForm, BDropdownGroup, BDropdownHeader, BDropdownText, EmbedPlugin, BEmbed, FormPlugin, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, FormCheckboxPlugin, BFormCheckbox, BFormCheckboxGroup, FormFilePlugin, BFormFile, FormGroupPlugin, BFormGroup, FormInputPlugin, BFormInput, FormRadioPlugin, BFormRadio, BFormRadioGroup, FormSelectPlugin, BFormSelect, FormTextareaPlugin, BFormTextarea, ImagePlugin, BImg, BImgLazy, InputGroupPlugin, BInputGroup, BInputGroupAddon, BInputGroupAppend, BInputGroupPrepend, BInputGroupText, JumbotronPlugin, BJumbotron, LayoutPlugin, BContainer, BRow, BCol, BFormRow, LinkPlugin, BLink, ListGroupPlugin, BListGroup, BListGroupItem, MediaPlugin, BMedia, BMediaAside, BMediaBody, ModalPlugin, BModal, NavPlugin, BNav, BNavForm, BNavItem, BNavItemDropdown, BNavText, NavbarPlugin, BNavbar, BNavbarBrand, BNavbarNav, BNavbarToggle, PaginationPlugin, BPagination, PaginationNavPlugin, BPaginationNav, PopoverPlugin, BPopover, ProgressPlugin, BProgress, BProgressBar, SpinnerPlugin, BSpinner, TablePlugin, BTable, BTableLite, TabsPlugin, BTabs, BTab, ToastPlugin, BToast, BToaster, TooltipPlugin, BTooltip, directivesPlugin, VBModalPlugin, VBModal, VBPopoverPlugin, VBPopover, VBScrollspyPlugin, VBScrollspy, VBTogglePlugin, VBToggle, VBTooltipPlugin, VBTooltip */
+/*! exports provided: componentsPlugin, BVModalPlugin, BVToastPlugin, AlertPlugin, BAlert, BadgePlugin, BBadge, BreadcrumbPlugin, BBreadcrumb, BBreadcrumbItem, ButtonPlugin, BButton, BButtonClose, ButtonGroupPlugin, BButtonGroup, ButtonToolbarPlugin, BButtonToolbar, CardPlugin, BCard, BCardBody, BCardFooter, BCardGroup, BCardHeader, BCardImg, BCardImgLazy, BCardSubTitle, BCardText, BCardTitle, CarouselPlugin, BCarousel, BCarouselSlide, CollapsePlugin, BCollapse, DropdownPlugin, BDropdown, BDropdownItem, BDropdownItemButton, BDropdownDivider, BDropdownForm, BDropdownGroup, BDropdownHeader, BDropdownText, EmbedPlugin, BEmbed, FormPlugin, BForm, BFormDatalist, BFormText, BFormInvalidFeedback, BFormValidFeedback, FormCheckboxPlugin, BFormCheckbox, BFormCheckboxGroup, FormFilePlugin, BFormFile, FormGroupPlugin, BFormGroup, FormInputPlugin, BFormInput, FormRadioPlugin, BFormRadio, BFormRadioGroup, FormSelectPlugin, BFormSelect, FormTextareaPlugin, BFormTextarea, ImagePlugin, BImg, BImgLazy, InputGroupPlugin, BInputGroup, BInputGroupAddon, BInputGroupAppend, BInputGroupPrepend, BInputGroupText, JumbotronPlugin, BJumbotron, LayoutPlugin, BContainer, BRow, BCol, BFormRow, LinkPlugin, BLink, ListGroupPlugin, BListGroup, BListGroupItem, MediaPlugin, BMedia, BMediaAside, BMediaBody, ModalPlugin, BModal, NavPlugin, BNav, BNavForm, BNavItem, BNavItemDropdown, BNavText, NavbarPlugin, BNavbar, BNavbarBrand, BNavbarNav, BNavbarToggle, PaginationPlugin, BPagination, PaginationNavPlugin, BPaginationNav, PopoverPlugin, BPopover, ProgressPlugin, BProgress, BProgressBar, SpinnerPlugin, BSpinner, TablePlugin, BTable, BTableLite, TabsPlugin, BTabs, BTab, ToastPlugin, BToast, BToaster, TooltipPlugin, BTooltip, directivesPlugin, VBModalPlugin, VBModal, VBPopoverPlugin, VBPopover, VBScrollspyPlugin, VBScrollspy, VBTogglePlugin, VBToggle, VBTooltipPlugin, VBTooltip, BVConfigPlugin, BVConfig, BootstrapVue, install, setConfig, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -65538,20 +65548,22 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
-/* harmony import */ var click_confirm_src_ClickConfirm_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! click-confirm/src/ClickConfirm.vue */ "./node_modules/click-confirm/src/ClickConfirm.vue");
-/* harmony import */ var _kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @kugatsu/vuenotification */ "./node_modules/@kugatsu/vuenotification/dist/vueNotification.common.js");
-/* harmony import */ var _kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
-/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _master_App__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./master/App */ "./resources/js/master/App.vue");
-/* harmony import */ var _aluno_AlunoIndex__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./aluno/AlunoIndex */ "./resources/js/aluno/AlunoIndex.vue");
-/* harmony import */ var _curso_CursoIndex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./curso/CursoIndex */ "./resources/js/curso/CursoIndex.vue");
-/* harmony import */ var _professor_ProfessorIndex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./professor/ProfessorIndex */ "./resources/js/professor/ProfessorIndex.vue");
-/* harmony import */ var _master_NotFound__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./master/NotFound */ "./resources/js/master/NotFound.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap-vue */ "./node_modules/bootstrap-vue/esm/index.js");
+/* harmony import */ var click_confirm_src_ClickConfirm_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! click-confirm/src/ClickConfirm.vue */ "./node_modules/click-confirm/src/ClickConfirm.vue");
+/* harmony import */ var _kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @kugatsu/vuenotification */ "./node_modules/@kugatsu/vuenotification/dist/vueNotification.common.js");
+/* harmony import */ var _kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! bootstrap-vue/dist/bootstrap-vue.css */ "./node_modules/bootstrap-vue/dist/bootstrap-vue.css");
+/* harmony import */ var bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(bootstrap_vue_dist_bootstrap_vue_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _master_App__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./master/App */ "./resources/js/master/App.vue");
+/* harmony import */ var _aluno_AlunoIndex__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./aluno/AlunoIndex */ "./resources/js/aluno/AlunoIndex.vue");
+/* harmony import */ var _curso_CursoIndex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./curso/CursoIndex */ "./resources/js/curso/CursoIndex.vue");
+/* harmony import */ var _professor_ProfessorIndex__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./professor/ProfessorIndex */ "./resources/js/professor/ProfessorIndex.vue");
+/* harmony import */ var _master_NotFound__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./master/NotFound */ "./resources/js/master/NotFound.vue");
 
 
 
@@ -65564,34 +65576,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_4___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('clickConfirm', click_confirm_src_ClickConfirm_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(bootstrap_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_kugatsu_vuenotification__WEBPACK_IMPORTED_MODULE_5___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('clickConfirm', click_confirm_src_ClickConfirm_vue__WEBPACK_IMPORTED_MODULE_4__["default"]); //axios.create({ baseURL: 'http://*****' });
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$http = axios__WEBPACK_IMPORTED_MODULE_1___default.a;
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
+  base: '/desafio2',
   mode: 'history',
   routes: [{
-    path: '/lv_desafio2/public',
+    path: '/',
     name: 'aluno-index',
-    component: _aluno_AlunoIndex__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _aluno_AlunoIndex__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
-    path: '/lv_desafio2/public/curso',
+    path: '/curso',
     name: 'curso-index',
-    component: _curso_CursoIndex__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _curso_CursoIndex__WEBPACK_IMPORTED_MODULE_10__["default"]
   }, {
-    path: '/lv_desafio2/public/professor',
+    path: '/professor',
     name: 'professor-index',
-    component: _professor_ProfessorIndex__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _professor_ProfessorIndex__WEBPACK_IMPORTED_MODULE_11__["default"]
   }, {
     path: '*',
     name: 'NotFound',
-    component: _master_NotFound__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _master_NotFound__WEBPACK_IMPORTED_MODULE_12__["default"]
   }]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   components: {
-    App: _master_App__WEBPACK_IMPORTED_MODULE_7__["default"]
+    App: _master_App__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   router: router
 });
@@ -65946,8 +65962,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\lv_desafio2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\lv_desafio2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\desafio2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\desafio2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

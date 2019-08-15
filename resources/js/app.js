@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from 'axios';
 import VueRouter from 'vue-router'
 import BootstrapVue from 'bootstrap-vue';
 import ClickConfirm from 'click-confirm/src/ClickConfirm.vue'
@@ -17,23 +18,29 @@ import NotFound from './master/NotFound';
 Vue.use(VueRouter)
 Vue.use(BootstrapVue);
 Vue.use(VueNotification);
+
 Vue.component('clickConfirm', ClickConfirm);
 
+//axios.create({ baseURL: 'http://*****' });
+
+Vue.prototype.$http = axios;
+
 const router = new VueRouter({
+    base: '/desafio2',
     mode: 'history',
     routes: [
         {
-            path: '/lv_desafio2/public',
+            path: '/',
             name: 'aluno-index',
             component: AlunoIndex
         },
         {
-            path: '/lv_desafio2/public/curso',
+            path: '/curso',
             name: 'curso-index',
             component: CursoIndex,
         },
         {
-            path: '/lv_desafio2/public/professor',
+            path: '/professor',
             name: 'professor-index',
             component: ProfessorIndex,
         },

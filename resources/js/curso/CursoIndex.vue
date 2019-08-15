@@ -104,7 +104,7 @@ export default {
         getDados() {
             var app = this;
             axios
-                .get('/lv_desafio2/public/api/curso')
+                .get('/desafio2/api/curso')
                 .then(resp => {
 					
 					//console.log(resp.data.professores);
@@ -121,9 +121,9 @@ export default {
             
             var app = this;
             var novoProfessor = app.professor;
-            var url = '/lv_desafio2/public/api/curso';
+            var url = '/desafio2/api/curso';
 
-            if(this.id) url = `/lv_desafio2/public/api/curso/${this.id}`;
+            if(this.id) url = `/desafio2/api/curso/${this.id}`;
 
             axios.post(url, {
                 nome: app.curso.nome,
@@ -153,7 +153,7 @@ export default {
         deleteCurso(id, index) {
 
             var app = this;
-            axios.delete('/lv_desafio2/public/api/curso/' + id)
+            axios.delete('/desafio2/api/curso/' + id)
                 .then(function (resp) {
                     
                     app.cursos.splice(index, 1);
@@ -175,7 +175,7 @@ export default {
             } else {
                 this.id = id
                 var app = this;
-                axios.get(`/lv_desafio2/public/api/curso/${id}`)
+                axios.get(`/desafio2/api/curso/${id}`)
                     .then(function (resp) {
 
 						//console.log(resp.data);

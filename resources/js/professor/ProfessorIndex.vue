@@ -81,7 +81,7 @@
 
 <script>
 
-import axios from 'axios';
+//import axios from 'axios';
 
 export default {
     data() {
@@ -100,13 +100,25 @@ export default {
     },
     methods: {
         getProfessores() {
-            
-            axios
-                .get('/lv_desafio2/public/api/professor')
+            /*
+            axios.get('/desafio2/api/professor')
                 .then(response => {
                     
                     this.professores = response.data;
-                });
+                })
+                .catch(function (resp) {
+                    console.log(resp.data);
+            });
+            */
+
+            this.$http.get('/api/professor')
+                .then(response => {
+                    
+                    this.professores = response.data;
+                })
+                .catch(function (resp) {
+                    console.log(resp.data);
+            });
         },
 
         formProfessor() {
@@ -115,11 +127,11 @@ export default {
             
             var app = this;
             var novoProfessor = app.professor;
-            var url = '/lv_desafio2/public/api/professor';
+            var url = '/api/professor';
 
-            if(this.id) url = `/lv_desafio2/public/api/professor/${this.id}`;
+            if(this.id) url = `/api/professor/${this.id}`;
 
-            axios.post(url, {
+            this.$http.post(url, {
                 nome: app.professor.nome,
                 data_nascimento: app.professor.data_nascimento
             })
@@ -146,7 +158,7 @@ export default {
         deleteProfessor(id, index) {
 
             var app = this;
-            axios.delete('/lv_desafio2/public/api/professor/' + id)
+            this.$http.delete('/api/professor/' + id)
                 .then(function (resp) {
                     
                     app.professores.splice(index, 1);
@@ -169,7 +181,7 @@ export default {
                 this.id = id
 
                 var app = this;
-                axios.get(`/lv_desafio2/public/api/professor/${id}`)
+                axios.get(`/api/professor/${id}`)
                     .then(function (resp) {
 
                         //console.log(resp.data);
